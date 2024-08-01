@@ -1,3 +1,4 @@
+'use client';
 import CardTask from "@/components/cardTask";
 
 export default function NovaTask() {
