@@ -1,10 +1,11 @@
 'use client';
-import CardTask from "@/components/cardTask";
+
+import FormCardTask from "@/components/formCardTask";
 
 export default function NovaTask() {
     return (
       <main className="flex min-h-screen flex-col items-center p-24">
-          <CardTask></CardTask>
+          <FormCardTask></FormCardTask>
       </main>
     );
   }

@@ -15,7 +15,7 @@ export const postTask = async (name: string) =>{
 export const getAllTasks = async () =>{
     await axios.get(API_URL).then((response) => {
         console.log(response.data);
-        return response.data
+        return response.data;
     })
 }
 
