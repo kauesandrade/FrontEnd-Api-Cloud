@@ -20,12 +20,12 @@ const API_URL = "http://localhost:8088/api/cloud/file"
     };
 
     return(
-        <Card>
+        <Card className="w-72">
             <CardHeader className="flex justify-center align-middle w-full">
                 <CardDescription>Data: {props.data}</CardDescription>
             </CardHeader>
             <CardContent>
-                <img src={props.src}></img>
+                <img className="w-72 h-72" src={props.src}></img>
             </CardContent>
             <CardFooter>
                 <Button onClick={()=> deleteImg(props.id_file, props.id_task)}>Excluir Imagem</Button>

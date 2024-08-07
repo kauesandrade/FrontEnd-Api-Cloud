@@ -49,7 +49,7 @@ export default function Task() {
         <p>Task: {task.nome}</p>
           <Input onChange={handleChange} type="file" multiple name="file" id="file"></Input>
       </div>
-      <div>
+      <div className="flex flex-wrap gap-1">
         {files.map((file: any) => (
           <ImgCard data={file.data} src={file.src} id_file={file.id} id_task={task.id}></ImgCard>
         ))}
