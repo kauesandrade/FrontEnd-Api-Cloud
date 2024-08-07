@@ -38,7 +38,6 @@ export default function Task() {
         const formData = new FormData();
         formData.append('file', file);
         postImage(task.id, formData);
-        getTask();
       }
     }
   };
