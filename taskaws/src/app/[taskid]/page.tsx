@@ -13,6 +13,8 @@ export default function Task() {
   const [files, setFiles] = useState([{}])
   const pathname = usePathname()
 
+  const fileInputRef = useRef();
+
   useEffect(() => {
     getTask();
   }, [])
@@ -46,9 +48,12 @@ export default function Task() {
 
   return (
     <main>
-      <div>
-        <p>Task: {task.nome}</p>
-          <Input onChange={handleChange} type="file" multiple name="file" id="file"></Input>
+      <div className="flex align-center justify-center gap-5 px-24 py-5">
+        <p className="flex align-center justify-center font-bold text-3xl">Task: {task.nome}</p>
+        <Button onClick={() => fileInputRef.current.click()}>
+          Adicionar Arquivo
+        </Button>
+        <Input className="hidden" onChange={handleChange} type="file" multiple ref={fileInputRef}  name="file" id="file"></Input>
       </div>
       <div className="flex flex-wrap gap-1">
         {files.map((file: any) => (

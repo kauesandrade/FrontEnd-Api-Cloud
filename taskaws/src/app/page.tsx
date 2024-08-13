@@ -1,6 +1,5 @@
 'use client';
 import CardTask from "@/components/cardTask";
-import { getAllTasks } from "@/service/taskService";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -31,7 +30,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="flex flex-wrap gap-1">
         {tasks.map((task: any) => (
-          <CardTask key={task.id} data={task} />
+          <CardTask fetchTasks={fetchTasks} key={task.id} data={task} />
         ))}
       </div>
     </main>
