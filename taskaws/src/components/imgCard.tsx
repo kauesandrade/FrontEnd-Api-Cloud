@@ -17,6 +17,7 @@ const API_URL = "http://localhost:8088/api/cloud/file"
                 id_task: id_task
             }
           });
+          props.getTask();
     };
 
     return(

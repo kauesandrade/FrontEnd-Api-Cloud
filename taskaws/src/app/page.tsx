@@ -12,20 +12,19 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        await axios.get(API_URL).then((response) => {
-          console.log(response.data);
-          setTasks(response.data);
-      })
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    };
-
     fetchTasks();
-
   }, [])
+
+  const fetchTasks = async () => {
+    try {
+      await axios.get(API_URL).then((response) => {
+        console.log(response.data);
+        setTasks(response.data);
+    })
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  };
 
 
   return (

@@ -31,13 +31,14 @@ export default function Task() {
 
 
 
-  const handleChange = event => {
+  const handleChange = async (event) => {
 
     if (event.target.files && event.target.files[0]) {
       for (var file of event.target.files) {
         const formData = new FormData();
         formData.append('file', file);
-        postImage(task.id, formData);
+        await postImage(task.id, formData);
+        getTask();
       }
     }
   };
@@ -51,7 +52,7 @@ export default function Task() {
       </div>
       <div className="flex flex-wrap gap-1">
         {files.map((file: any) => (
-          <ImgCard data={file.data} src={file.src} id_file={file.id} id_task={task.id}></ImgCard>
+          <ImgCard getTask={getTask} data={file.data} src={file.src} id_file={file.id} id_task={task.id}></ImgCard>
         ))}
       </div>
     </main>
