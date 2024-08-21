@@ -19,7 +19,7 @@ export default function Task() {
 
   useEffect(() => {
     getTask();
-  }, [task])
+  }, [])
 
   const getTask = async () => {
     await taskService.getTask(pathname).then((response: any) => {
