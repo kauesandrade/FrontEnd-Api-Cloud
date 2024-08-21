@@ -1,3 +1,4 @@
+'use client';
 import { postTask } from "@/service/taskService";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -18,8 +19,6 @@ export default function FormCardTask() {
             router.push('/');
         }
     }
-
-
 
     return (
 

@@ -2,38 +2,36 @@
 import ImgCard from "@/components/imgCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { Task } from "@/dtos/task";
 import { postImage } from "@/service/taskService";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import * as taskService from "@/service/taskService";
+
 export default function Task() {
 
-  const API_URL = "http://localhost:8088/api/cloud/task"
-  const [task, setTask] = useState({});
+  const [task, setTask] = useState({ id: 0, nome: "" });
   const [files, setFiles] = useState([{}])
   const pathname = usePathname()
 
-  const fileInputRef = useRef();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     getTask();
-  }, [])
+  }, [task])
 
   const getTask = async () => {
-    try {
-      await axios.get(API_URL + pathname).then((response) => {
-        console.log(response.data);
-        setTask(response.data.task);
-        setFiles(response.data.files)
-      })
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    }
+    await taskService.getTask(pathname).then((response: any) => {
+      console.log(response);
+      setTask(response.task as Task);
+      setFiles(response.files)
+    });
   };
 
 
 
-  const handleChange = async (event) => {
+  const handleChange = async (event: any) => {
 
     if (event.target.files && event.target.files[0]) {
       for (var file of event.target.files) {
@@ -50,14 +48,14 @@ export default function Task() {
     <main>
       <div className="flex align-center justify-center gap-5 px-24 py-5">
         <p className="flex align-center justify-center font-bold text-3xl">Task: {task.nome}</p>
-        <Button onClick={() => fileInputRef.current.click()}>
+        <Button onClick={() => fileInputRef.current!.click()}>
           Adicionar Arquivo
         </Button>
-        <Input className="hidden" onChange={handleChange} type="file" multiple ref={fileInputRef}  name="file" id="file"></Input>
+        <Input className="hidden" onChange={handleChange} type="file" multiple ref={fileInputRef} name="file" id="file"></Input>
       </div>
       <div className="flex flex-wrap gap-1">
-        {files.map((file: any) => (
-          <ImgCard getTask={getTask} data={file.data} src={file.src} id_file={file.id} id_task={task.id}></ImgCard>
+        {files.map((file: any, key: any) => (
+          <ImgCard key={key}  getTask={getTask} data={file.data} src={file.src} id_file={file.id} id_task={task.id}></ImgCard>
         ))}
       </div>
     </main>

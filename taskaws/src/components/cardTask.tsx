@@ -3,16 +3,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import axios from "axios";
+import * as taskService from "../service/taskService";
 
 export default function CardTask(props: any){
-
-    const API_URL = "http://localhost:8088/api/cloud/task/"
 
     const router = useRouter();
 
     const deleteTask = async () =>{
-        await axios.delete(API_URL+props.data.id);
-        props.fetchTasks();
+        await taskService.deleteTask(props.data.id);
+        await props.fetchTasks();
     }
 
     return(

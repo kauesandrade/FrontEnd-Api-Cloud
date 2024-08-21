@@ -3,8 +3,7 @@ import CardTask from "@/components/cardTask";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-const API_URL = "http://localhost:8088/api/cloud/task"
+import * as taskService from "../service/taskService";
 
 export default function Home() {
 
@@ -15,14 +14,10 @@ export default function Home() {
   }, [])
 
   const fetchTasks = async () => {
-    try {
-      await axios.get(API_URL).then((response) => {
-        console.log(response.data);
-        setTasks(response.data);
-    })
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    }
+    await taskService.fetchTasks().then((response: any) => {
+      setTasks(response);
+    });
+
   };
 
 

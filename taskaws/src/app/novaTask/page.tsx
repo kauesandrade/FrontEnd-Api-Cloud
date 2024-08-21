@@ -1,5 +1,3 @@
-'use client';
-
 import FormCardTask from "@/components/formCardTask";
 
 export default function NovaTask() {
