@@ -1,8 +1,8 @@
 'use server';
 import axios from "axios"
 
-const API_URL_TASK = "http://api-cloud-back:8089/api/cloud/task"
-const API_URL_FILE = "http://api-cloud-back:8089/api/cloud/file"
+const API_URL_TASK = "http://localhost:8089/api/cloud/task"
+const API_URL_FILE = "http://localhost:8089/api/cloud/file"
 
 
 export const postTask = async (name: string) => {
